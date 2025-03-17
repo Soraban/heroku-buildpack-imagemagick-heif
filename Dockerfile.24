@@ -22,14 +22,14 @@ RUN curl -L https://github.com/strukturag/libde265/releases/download/v$LIBDE265_
   && make \
   && make install
 
-# https://github.com/strukturag/libheif/releases
-ENV LIBHIEF_VERSION=1.15.2
+ENV LIBHEIF_VERSION=1.19.7
 
-RUN curl -L https://github.com/strukturag/libheif/releases/download/v$LIBHIEF_VERSION/libheif-$LIBHIEF_VERSION.tar.gz | tar zx \
-  && cd libheif-$LIBHIEF_VERSION \
-  && ./autogen.sh \
-  && ./configure --prefix=/usr/src/imagemagick \
-  && make \
+# Download, build, and install libheif using CMake
+RUN curl -L https://github.com/strukturag/libheif/releases/download/v$LIBHEIF_VERSION/libheif-$LIBHEIF_VERSION.tar.gz | tar zx \
+  && cd libheif-$LIBHEIF_VERSION \
+  && mkdir build \
+  && cd build \
+  && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/src/imagemagick .. \
   && make install
 
 # https://github.com/webmproject/libwebp/tags

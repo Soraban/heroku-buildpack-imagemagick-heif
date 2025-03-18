@@ -1,15 +1,15 @@
-# Heroku 20 + 22 buildpack for Imagemagick 7.1, webp, and heif
+# Heroku 24 buildpack for Imagemagick 7.1 heif and webp
 
 This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for vendoring the ImageMagick with WebP and HEIF support binaries into your project.
 
-This buildpack works with BOTH [Heroku stack](https://devcenter.heroku.com/articles/stack) `heroku-20` and `heroku-22`.
+This buildpack works with [Heroku stack](https://devcenter.heroku.com/articles/stack) `heroku-24`.
 
 ## Usage
 
 Add this buildpack to your app:
 
 ```plain
-heroku buildpacks:add https://github.com/drnic/heroku-buildpack-imagemagick-webp -i 1 -a <app name>
+heroku buildpacks:add https://github.com/Soraban/heroku-buildpack-imagemagick-heif -i 1 -a <app name>
 ```
 
 And add it into your `app.json`:
@@ -17,7 +17,7 @@ And add it into your `app.json`:
 ```json
   "buildpacks": [
     {
-      "url": "https://github.com/drnic/heroku-buildpack-imagemagick-webp"
+      "url": "https://github.com/Soraban/heroku-buildpack-imagemagick-heif"
     },
     {
       "url": "heroku/ruby"
@@ -57,19 +57,18 @@ Compiler: gcc (11.4)
 
 To update the dependencies you have the following steps:
 
-1. Update the `Dockerfile`
-2. Re-build the `build/imagemagick.tar.gz` file
+1. (Optional) Update the libheif version in the `Dockerfile` by changing LIBHEIF_VERSION. The current default version is v1.19.7
+2. Re-build the `build/imagemagick.tar.gz` file by running the following command. This will build imagemagick for Heroku-24 stack
 
     ```plain
-    ./build.sh 22
-    ./build.sh 20
+    ./build.sh 24
     ```
 
-3. Git the changes, including the tar.gz file, and push to your fork
+3. The tar.gz file will be generated after you run the command above. Commit the changes, including the tar.gz file, and push to your fork
 4. Purge your Heroku application's cache
 
    ```plain
-   heroku builds:cache:purge
+   heroku builds:cache:purge --app <app_name>
    ```
 
 5. Redeploy your application via the Heroku dashboard, or push a new commit.

@@ -72,7 +72,7 @@ echo "Configuring build environment" | arrow
 
 cat <<EOF >export
 export MAGICK_HOME="$BUILD_DIR/vendor/imagemagick"
-export MAGICK_CONFIGURE_PATH="$BUILD_DIR/vendor/imagemagick"
+export MAGICK_CONFIGURE_PATH="/app/.magick"
 export PATH="/app/bin:$PATH:\$PATH"
 export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:$LD_LIBRARY_PATH"
 export LIBRARY_PATH="\$LIBRARY_PATH:$LIBRARY_PATH"
@@ -84,7 +84,7 @@ export C_INCLUDE_PATH="\$C_INCLUDE_PATH:$C_INCLUDE_PATH"
 EOF
 
 export MAGICK_HOME="$BUILD_DIR/vendor/imagemagick"
-export MAGICK_CONFIGURE_PATH="$BUILD_DIR/vendor/imagemagick"
+export MAGICK_CONFIGURE_PATH="/app/.magick"
 export PATH="/app/bin:$PATH:\$PATH"
 
 echo $MAGICK_HOME
@@ -102,7 +102,7 @@ mkdir -p $BUILD_DIR/.profile.d
 
 cat <<EOF >$BUILD_DIR/.profile.d/$BUILDPACK_NAME.sh
 export MAGICK_HOME="$ACTUAL_INSTALL_PATH"
-export MAGICK_CONFIGURE_PATH="$ACTUAL_INSTALL_PATH"
+export MAGICK_CONFIGURE_PATH="/app/.magick"
 export PATH="/app/bin:${PATH//$BUILD_DIR//app}:\$PATH"
 export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:${LD_LIBRARY_PATH//$BUILD_DIR//app}"
 export LIBRARY_PATH="\$LIBRARY_PATH:${LIBRARY_PATH//$BUILD_DIR//app}"

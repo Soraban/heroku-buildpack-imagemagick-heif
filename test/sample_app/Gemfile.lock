@@ -29,7 +29,7 @@ GEM
       rack (>= 3)
     rainbow (3.1.1)
     regexp_parser (2.10.0)
-    rexml (3.3.9)
+    rexml (3.4.2)
     rubocop (1.75.8)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -83,7 +83,7 @@ DEPENDENCIES
   rack (~> 3.1.8)
   rack-session (~> 2.0.0)
   rackup
-  rexml (~> 3.3.9)
+  rexml (~> 3.4.2)
   sinatra (~> 4.1.0)
   standard
 
